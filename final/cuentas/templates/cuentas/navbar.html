@@ -1,24 +1,55 @@
 {% load static %}
-<style>
-  #hello-msg{
-    font-size: 18px;
-    color: white;
-    margin-right: 20px;
-  }
-</style>
+<html>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <img src="{% static 'images/diegot.jpg' %}" alt="" width="50" height="50">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="{% url 'posts:blog' %}">Inicio</a>
-        <a class="nav-item nav-link" href="{% url 'posts:crear_post' %}">Crear Post</a>
-        <a class="nav-item nav-link" href="{% url 'profile' %}">Perfil</a>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css'%}">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between" style="width: 100%;">
+    <div class="container-flex">
+      <div style="width: 25%; align-items: center;">
+        <div class="text-right" style="margin-right: 4%;">
+          <img src="{% static 'images/blog.png' %}" alt="" width="60" height="60">
+        </div>
+      </div>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="width: 33%;">
+
+        <div class="navbar-nav">
+
+          <div class="ga">
+            <a class="nav-item nav-link" href="{% url 'posts:blog' %}">Inicio</a>
+          </div>
+
+          <div class="ga">
+            <a class="nav-item nav-link " href="{% url 'posts:crear_post' %}">Crear Post</a>
+          </div>
+
+          <div class="ga">
+            <a class="nav-item nav-link " href="{% url 'profile' %}">Perfil</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-box" style="width: 36%;">
+        <div class="navbar-nav" style="width: 50%">
+          <div style="margin-right: 3%; text-align: center;">
+            <i class="navbar-brand" style="font-size: 200%;">{{request.user}}</i>
+          </div>
+          <div style="margin-right: 5%;">
+            <i id="hello-msg"><a class="nav-item nav-link" style="color: lightgrey;" href="{% url 'logout' %}"> Cerrar Sesion </a></i>
+          </div>
+        </div>
       </div>
     </div>
-    <span id="hello-msg">Hola, {{request.user}}</span>
-    <span id="hello-msg"><a class="nav-item nav-link" href="{% url 'logout' %}"> Cerrar Sesion </a></span>
   </nav>
+</body>
+
+</html>

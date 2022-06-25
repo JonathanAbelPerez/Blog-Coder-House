@@ -1,7 +1,25 @@
-{% extends 'cuentas/main.html' %}
-
+{% extends 'cuentas/padreh.html' %}
 {% block content %}
 
-<h1>home</h1>
+<body>
+    <div class="container h-20">
+    <div class="d-flex justify-content-center h-100">
+        <div class="mini-box justify-content-center">
+            <h1>Bienvenido al blog</h1>
+    </div></div>
+    </div>
+    <div class="container h-55">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card border-0" style="background-color: transparent;">
+                <div class="d-flex justify-content-center" style="width: 100%;">
+                   <a type="button" class="btn login_btn3" href="{% url 'login' %}" style="font-size: 150%; font: italic;">Ingresar</a>
 
+                </div>
+                <div class="d-flex justify-content-center" style="width: 100%;">
+                    <a type="button" class="btn login_btn3" href="{% url 'registro' %}" style="font-size: 150%; font: italic; margin-top: 3%;">Registrarse</a>
+ 
+                 </div>
+            </div>
+        </div>
+</body>
 {% endblock %}

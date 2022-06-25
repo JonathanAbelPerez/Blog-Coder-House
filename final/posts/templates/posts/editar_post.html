@@ -1,0 +1,27 @@
+{% extends 'cuentas/main.html' %}
+
+{% block content %}
+
+{% if user.id == post.author.id %}
+<div class="container">
+    <br />
+    <div class="text-center">
+        <div class="col-md-12">
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+                    <a class="btn btn-secondary" href="{% url 'posts:postdetail' post.pk %}">Cancelar</a>
+                    <button type="submit" class="btn btn-secondary">Actualizar</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+    <h1>no se te permite ver esta pagina</h1>
+{% endif %}
+{% endblock %}

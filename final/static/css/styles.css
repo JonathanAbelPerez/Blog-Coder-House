@@ -1,15 +1,96 @@
+.bg2 {
+        background: url("/static/images/bg.jpg") 50% 0 no-repeat fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: inherit;
+        position: relative;
+}
+
+
+.container-flex {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+}
+
+.flex-box {
+        display: flex;
+        margin-right: 2%;
+        align-items: center;
+}
+
+.navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.navbar-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        margin-left: 5%;
+        margin-right: 5%;
+}
+
+.ga {
+        flex-grow: 1;
+        flex-basis: 0;
+        margin-right: 3%;
+        margin-left: 3%;
+        width: 33%;
+        text-align: center;
+        background-color: rgba(169, 169, 169, 0.251);
+}
+
+
+#hello-msg {
+        font-size: 18px;
+        color: white;
+        margin-right: 2%;
+}
+
+
 body,
+
+
 html {
         margin: 0;
         padding: 0;
         height: 100%;
-        background: lightgrey !important;
+        background: white;
 }
+
+.h-90 {
+        height: 90%;
+}
+
+.h-55 {
+        height: 55%;
+
+}
+
+.h-20 {
+        height: 20%;
+}
+
+
+.mini-box {
+        margin-top: auto;
+        margin-bottom: auto;
+        background: transparent;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+}
+
 .user_card {
         width: 350px;
         margin-top: auto;
         margin-bottom: auto;
-        background: rgb(173, 173, 173);
+        background: rgb(212, 212, 212);
         position: relative;
         display: flex;
         justify-content: center;
@@ -26,27 +107,51 @@ html {
         margin-top: 20px;
 }
 
-form-title{
+form-title {
         color: #fff;
 }
-.login_btn {
+
+.login_btn3{
+        display: block;
         width: 100%;
-        background: #33ccff00 !important;
-        color: white !important;
+        border: none;
+        padding: 14px 28px;
+        cursor: pointer;
+        text-align: center;
+        background: darkgrey;
+        color: white;
 }
-.login_btn:focus {
-        box-shadow: none !important;
-        outline: 0px !important;
+.login_btn3:hover{
+        background: black;
+        color: white;
 }
+
+.login_btn2 {
+        background: darkgrey;
+        color: white;
+}
+
+.login_btn2:hover {
+        background: black;
+        color: white;
+}
+
+.login_btn2:focus {
+        box-shadow: none;
+        outline: 0px;
+}
+
 .login_container {
         padding: 0 2rem;
 }
+
 .input-group-text {
         background: #f7ba5b !important;
         color: white !important;
         border: 0 !important;
         border-radius: 0.25rem 0 0 0.25rem !important;
 }
+
 .input_user,
 .input_pass:focus {
         box-shadow: none !important;

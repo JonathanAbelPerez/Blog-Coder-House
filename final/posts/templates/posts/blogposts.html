@@ -1,1 +1,33 @@
-{{post.title}}
+{% extends 'cuentas/main.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row g-5">
+        <div class="col-md-12">
+
+            <article class="blog-post">
+                <h2 class="blog-post-title" style="font-size:50px">{{post.titulo}}</h2>
+                <div class="text-right">
+                    <p class="blog-post-meta " style="font-size:15px;">{{post.date_created}} | De: {{post.author}}</p>
+                    <hr>
+                </div>
+                <p class="blog-post-meta" style="font-size: 18px">{{post.cuerpo}}</p>
+
+                <hr>
+
+                {% if user.id == post.author.id %}
+                <div class="text-center">
+                    <div class="card-body">
+                        <a style="width: 100px;" class="btn btn-secondary"
+                            href="{% url 'posts:borrar' post.pk %}">Borrar</a>
+                        <a style="width: 100px;" class="btn btn-secondary"
+                            href="{% url 'posts:editar' post.pk %}">Editar</a>
+
+
+                    </div>
+                </div>
+                {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

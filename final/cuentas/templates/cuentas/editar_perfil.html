@@ -1,5 +1,6 @@
 {% extends 'cuentas/main.html' %}
 
+{% load static %}
 {% block content %}
 
 <div class="container">
@@ -9,11 +10,12 @@
             {% csrf_token %}
 
             {{ form.as_p }}
-            <button type="submit" class="btn btn-secondary">Crear</button>
+            <button type="submit" class="btn btn-secondary">Actualizar</button>
 
 
         </form>
     </div>
 </div>
+
 
 {% endblock %}

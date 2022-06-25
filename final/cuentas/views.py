@@ -1,23 +1,32 @@
+from audioop import reverse
 import django
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.urls import reverse_lazy
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
-from .forms import CrearUsuarioForm
+from django.views import generic
+from .forms import CrearUsuarioForm, ActualizarUsuarioForm
 
 """----------------------- VISTAS GENERALES ----------------------------"""
 @login_required(login_url='login')
 def profile(request): #pagina de perfil de usuario
     return render(request, 'cuentas/profile.html')
 
+class EditarUsuarioView(generic.UpdateView):
+    form_class = ActualizarUsuarioForm
+    template_name = 'cuentas/editar_perfil.html'
+    success_url = reverse_lazy('profile')
+    def get_object(self):
+        return self.request.user
+
+
 
 """------------------------- LOGIN-LOGOUT-REGISTRO-----------------------"""
 def registro(request):
     if request.user.is_authenticated:
-        return redirect('blog')
+        return redirect('posts:blog')
     else:
         form = CrearUsuarioForm()
         if request.method == "POST":
@@ -33,7 +42,7 @@ def registro(request):
 
 def login_user(request):
     if request.user.is_authenticated:
-        return redirect('blog')
+        return redirect('posts:blog')
     else:
         if request.method=="POST":
             form = AuthenticationForm(request, data=request.POST)
@@ -45,7 +54,7 @@ def login_user(request):
                 user = authenticate(username= username, password= password)
                 if user is not None:
                     login(request, user)
-                    return redirect('blog')
+                    return redirect('posts:blog')
                 else:
                     messages.info(request, 'Usuario o contraseña incorrecto')
         context={}

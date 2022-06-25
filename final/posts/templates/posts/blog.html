@@ -1,14 +1,30 @@
 {% extends 'cuentas/main.html' %}
 
 {% block content %}
+<br />
 
-{% include 'cuentas/navbar.html' %}
+<div class="container">
+        <div class="list-group">
+                {% for post in object_list %}
+                <div class="card text-center">
+                        <a href="{% url 'posts:postdetail' post.pk %}" class="list-group-item list-group-item-action">
+                                <h5 class="card-title">{{post.titulo }}</h5>
+                                De: {{post.author}} --{{post.date_created}}
+                        </a>
+                        {% if user.id == post.author.id %}
+                        <div class="card-body">
+                                <a style="position: left;" class="btn btn-secondary"
+                                        href="{% url 'posts:editar' post.pk %}">Editar</a>
+                                <a style="position: right;" class="btn btn-secondary"
+                                        href="{% url 'posts:borrar' post.pk %}">Borrar</a>
+                        </div>
+                        {% endif %}
+                </div>
 
-<div class="list-group">
-        {% for post in object_list %}
-        <a href="{% url 'posts:postdetail' post.pk %}" class="list-group-item list-group-item-action">{{ post.title }} - De: {{post.author}} -- {{post.date_created}}</a>
+                <br />
 
-        {% endfor %}
+                {% endfor %}
+        </div>
 </div>
 
 {% endblock %}

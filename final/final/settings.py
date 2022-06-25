@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'cuentas',
     'posts',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

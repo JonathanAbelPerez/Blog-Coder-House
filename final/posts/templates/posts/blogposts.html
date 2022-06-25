@@ -10,9 +10,12 @@
                 <div class="text-right">
                     <p class="blog-post-meta " style="font-size:15px;">{{post.date_created}} | De: {{post.author}}</p>
                     <hr>
-                </div>
-                <p class="blog-post-meta" style="font-size: 18px">{{post.cuerpo}}</p>
 
+                </div>
+                <div class="blog-post-meta" style="font-size: 20px;">
+                    <!--- <p class="blog-post-meta" style="font-size: 18px">{{post.cuerpo}}</p>
+                --> {{ post.cuerpo|safe }}
+                </div>
                 <hr>
 
                 {% if user.id == post.author.id %}
@@ -27,7 +30,9 @@
                     </div>
                 </div>
                 {% endif %}
+
         </div>
+
     </div>
 </div>
 {% endblock %}

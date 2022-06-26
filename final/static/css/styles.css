@@ -1,3 +1,56 @@
+footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #343a40;
+        color: white;
+        text-align: center;
+        height: 40px;
+}
+
+#abt {
+        display: block;
+        text-align: center;
+        background-color: transparent;
+        color: lightgray;
+        text-emphasis-color: white;
+}
+
+#abt:link {
+        display: block;
+        text-align: center;
+        background-color: transparent;
+        color: green;
+        text-emphasis-color: white;
+}
+
+pa {
+        font-style: italic;
+        font-size: large;
+        font-weight: 400;
+        margin-top: 1em;
+        display: inline-table;
+        line-height: 22px;
+
+}
+
+br {
+        display: block;
+        margin: 10px 0;
+        line-height: 22px;
+        content: "";
+}
+
+pa:empty {
+        margin-top: 1em;
+        content: attr();
+        display: inline-block;
+        width: 0px;
+        line-height: 22px;
+}
+
+
 .bg2 {
         background: url("/static/images/bg.jpg") 50% 0 no-repeat fixed;
         background-repeat: no-repeat;
@@ -17,6 +70,7 @@
         display: flex;
         margin-right: 2%;
         align-items: center;
+
 }
 
 .navbar {
@@ -111,7 +165,7 @@ form-title {
         color: #fff;
 }
 
-.login_btn3{
+.login_btn3 {
         display: block;
         width: 100%;
         border: none;
@@ -121,7 +175,8 @@ form-title {
         background: darkgrey;
         color: white;
 }
-.login_btn3:hover{
+
+.login_btn3:hover {
         background: black;
         color: white;
 }

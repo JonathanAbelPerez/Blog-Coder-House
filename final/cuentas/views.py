@@ -16,6 +16,10 @@ from .forms import CrearUsuarioForm, ActualizarUsuarioForm, CambiarAvatarForm
 def profile(request): #pagina de perfil de usuario
     return render(request, 'cuentas/profile.html')
 
+def abtme(request):
+    return render(request, 'about/aboutme.html')
+
+
 class EditarUsuarioView(generic.UpdateView):
     form_class = ActualizarUsuarioForm
     template_name = 'cuentas/editar_perfil.html'

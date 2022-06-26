@@ -1,4 +1,5 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from multiprocessing import context, get_context
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator

@@ -24,43 +24,52 @@
             </div>
             <hr>
 
-            {% if user.id == post.author.id %}
-            <div class="text-center">
-                <div class="card-body">
-                    <a style="width: 100px;" class="btn btn-secondary"
-                        href="{% url 'posts:borrar' post.pk %}">Borrar</a>
-                    <a style="width: 100px;" class="btn btn-secondary"
-                        href="{% url 'posts:editar' post.pk %}">Editar</a>
-
-
-                </div>
-            </div>
-            {% endif %}
-
     </div>
     <div class="col-md-4">
         <div class="position-sticky" style="top: 2rem;">
-            <div class="card" style="width: 18rem;">
+            <div class="flex-box p-4 mb-3 bg-light rounded" style="width: 100%;">
+                <div class="card text-center " style="border: solid;">
 
-                {% if post.author.perfil.avatar.url is not none%}
-                <div class="user-card">
-                    <img src="{{post.author.perfil.avatar.url}}" class="card-img-top" alt="Card image cap">
-                </div>
-                {% else %}
-                <div class="card">
-                    <img src="{% static 'images/default.png' %}" class="card-img-top" alt="Card image cap">
-                </div>
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title">{{post.author}}</h5>
-                    <p class="blog-post-meta " style="font-size:15px;">
-                        Usuario desde: <br>
-                        {{post.author.date_joined}}
-                    </p>
-                    <p class="card-text"></p>
+                    {% if post.author.perfil.avatar.url is not none%}
+                    <div class="user-card" style="width: 100%; padding: 5%;">
+                        <img src="{{post.author.perfil.avatar.url}}" class="card-img-top rounded" alt="Card image cap"
+                            style="border-radius: 5rem!important;">
+                    </div>
+                    {% else %}
+                    <div class="user-card" style="width: 100%; padding: 5%;">
+                        <img src="{% static 'images/default.png' %}" class="card-img-top rounded" alt="Card image cap"
+                            style="border-radius: 5rem!important;">
+                    </div>
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.author}}</h5>
+                        <p class="blog-post-meta " style="font-size:15px;">
+                            Usuario desde: <br>
+                            {{post.author.date_joined}}
+                        </p>
+
+                    </div>
                 </div>
             </div>
+
+            <div class="p-4" style="width: 100%;">
+                {% if user.id == post.author.id %}
+                <div class="text-center">
+                    <div class="card-body">
+                        <a style="width: 100px;" class="btn btn-secondary"
+                            href="{% url 'posts:borrar' post.pk %}">Borrar</a>
+                        <a style="width: 100px;" class="btn btn-secondary"
+                            href="{% url 'posts:editar' post.pk %}">Editar</a>
+
+
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
         </div>
+
     </div>
 </div>
 

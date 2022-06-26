@@ -6,8 +6,9 @@
 </head>
 
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between" style="width: 100%;">
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between"
+  style="width: 100%; position: sticky; top: 0rem; bottom: 2rem;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between position-sticky" style="width: 100%;">
     <div class="container-flex">
       <div style="width: 25%; align-items: center;">
         <div class="text-right" style="margin-right: 4%;">
@@ -38,18 +39,33 @@
         </div>
       </div>
 
-      <div class="flex-box" style="width: 36%;">
-        <div class="navbar-nav" style="width: 50%">
-          <div style="margin-right: 3%; text-align: center;">
-            <i class="navbar-brand" style="font-size: 200%;">{{request.user}}</i>
+      <div class="flex-box" style="width: 40%;">
+        <div class="navbar-nav" style="width: 60%">
+          <div style="width: 40%;">
+            {% if request.user.perfil.avatar.url is not none%}
+            <div>
+              <img src="{{request.user.perfil.avatar.url}}" class="rounded float-left img-thumbnail"
+                style="height: 60px; width: 60px;">
+            </div>
+            {% else %}
+            <div>
+              <img src="{% static 'images/default.png' %}" class="rounded float-left img-thumbnail"
+                style="height: 60px; width: 60px;">
+            </div>
+            {% endif %}
+            <div class="flex-box"  style="padding-left: 5%;">
+              <i class="navbar-brand" style="font-size: 150%;">{{request.user}}</i>
+            </div>
           </div>
-          <div style="margin-right: 5%;">
-            <i id="hello-msg"><a class="nav-item nav-link" style="color: lightgrey;" href="{% url 'logout' %}"> Cerrar Sesion </a></i>
+          <div style="margin-right: 15%;">
+            <i id="hello-msg"><a class="nav-item nav-link" style="color: lightgrey;" href="{% url 'logout' %}"> Cerrar
+                Sesion </a></i>
           </div>
         </div>
       </div>
     </div>
   </nav>
+</header>
 </body>
 
 </html>

@@ -3,22 +3,66 @@
 {% block content %}
 
 
-<div>
-    <h1>profile</h1>
-    {{user.username}}
-    {{user.perfil.user}}
 
-    {% if user.perfil.avatar.url is not none%}
-    <div class="user-card">
-        <img src="{{user.perfil.avatar.url}}">
+<div class="container">
+    <div class="row g-5">
+        <div class="col-md-4">
+            {% if user.perfil.avatar.url is not none%}
+            <div class="user-card" style="width: 100%; padding: 5%;">
+                <img src="{{user.perfil.avatar.url}}" class="card-img-top rounded" alt="Card image cap"
+                    style="border-radius: 5rem!important;">
+            </div>
+            {% else %}
+            <div class="user-card" style="width: 100%; padding: 5%;">
+                <img src="{% static 'images/default.png' %}" class="card-img-top rounded" alt="Card image cap"
+                    style="border-radius: 5rem!important;">
+            </div>
+
+            {% endif %}
+            <div class="text-center">
+                <div class="card-body">
+                    <i>Usuario desde:  <br>
+                    {{user.date_joined}} </i><br>
+                    {{user.perfil.bio}}
+                </div>
+            </div>
+
+            <div class="text-center">
+                <div class="card-body">
+                    <a href="{%  url 'editar_avatar' %}" class="btn btn-secondary">Editar</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="user-card flex-box" style="width: 100%; padding: 5%; min-height: 250px;">
+                <div class="user-card" style="width: 45%;">
+                    
+                        <pa> Nombre de Usuario:</pa> <br>
+                        <pa>    Direccion de E-Mail:</pa>   <br>
+                        <pa>    Nombre: </pa> <br>
+                        <pa>    Apellido: </pa> 
+                    
+                </div>
+                <div class="user-card" style="width: 75%; padding: 5%; min-height: inherit;">
+                    
+                        <pa> {{user.username}}</pa> <br>
+                        <pa> {{user.email}} </pa> <br>
+                        <pa>  {{user.first_name}}</pa> <br>
+                        <pa>  {{user.last_name}}</pa>
+                    
+                </div>
+            </div>
+
+            <div class="text-center">
+                <div class="card-body">
+                    <a href="{%  url 'editar_perfil' %}" class="btn btn-secondary">Editar</a>
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
-    {% else %}
-    <div class="card">
-        <img src="{% static 'images/default.png' %}">
-    </div>
 
-    {% endif %}
-
-    <a href="{%  url 'editar_perfil' %}">editar perfil</a>
-</div>
-{% endblock %}
+    {% endblock %}

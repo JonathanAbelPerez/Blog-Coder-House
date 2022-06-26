@@ -1,11 +1,24 @@
 {% extends 'cuentas/main.html' %}
-
+{% load static %}
 {% block content %}
 
 
+<div>
+    <h1>profile</h1>
+    {{user.username}}
+    {{user.perfil.user}}
 
-<h1>profile</h1>
-{{user.username}}
+    {% if user.perfil.avatar.url is not none%}
+    <div class="user-card">
+        <img src="{{user.perfil.avatar.url}}">
+    </div>
+    {% else %}
+    <div class="card">
+        <img src="{% static 'images/default.png' %}">
+    </div>
 
-<a href="{%  url 'editar_perfil' %}">editar perfil</a>
+    {% endif %}
+
+    <a href="{%  url 'editar_perfil' %}">editar perfil</a>
+</div>
 {% endblock %}

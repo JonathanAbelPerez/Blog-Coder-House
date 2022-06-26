@@ -1,38 +1,67 @@
 {% extends 'cuentas/main.html' %}
-
+{% load static %}
 {% block content %}
-<div class="container">
-    <div class="row g-5">
-        <div class="col-md-12">
+<br>
 
-            <article class="blog-post">
-                <h2 class="blog-post-title" style="font-size:50px">{{post.titulo}}</h2>
+<div class="row g-5">
+    <div class="col-md-8">
+
+        <article class="blog-post">
+            <h2 class="blog-post-title mb-1" style="font-size:50px">{{post.titulo}}</h2>
+            <div>
                 <div class="text-right">
-                    <p class="blog-post-meta " style="font-size:15px;">{{post.date_created}} | De: {{post.author}}</p>
-                    <hr>
 
-                </div>
-                <div class="blog-post-meta" style="font-size: 20px;">
-                    <!--- <p class="blog-post-meta" style="font-size: 18px">{{post.cuerpo}}</p>
-                --> {{ post.cuerpo|safe }}
+                    <p class="blog-post-meta " style="font-size:15px;">{{post.date_created}}
+                    </p>
+
                 </div>
                 <hr>
 
-                {% if user.id == post.author.id %}
-                <div class="text-center">
-                    <div class="card-body">
-                        <a style="width: 100px;" class="btn btn-secondary"
-                            href="{% url 'posts:borrar' post.pk %}">Borrar</a>
-                        <a style="width: 100px;" class="btn btn-secondary"
-                            href="{% url 'posts:editar' post.pk %}">Editar</a>
+            </div>
+            <div class="blog-post-meta" style="font-size: 20px;">
+                <!--- <p class="blog-post-meta" style="font-size: 18px">{{post.cuerpo}}</p>
+                --> {{ post.cuerpo|safe }}
+            </div>
+            <hr>
+
+            {% if user.id == post.author.id %}
+            <div class="text-center">
+                <div class="card-body">
+                    <a style="width: 100px;" class="btn btn-secondary"
+                        href="{% url 'posts:borrar' post.pk %}">Borrar</a>
+                    <a style="width: 100px;" class="btn btn-secondary"
+                        href="{% url 'posts:editar' post.pk %}">Editar</a>
 
 
-                    </div>
                 </div>
-                {% endif %}
-
-        </div>
+            </div>
+            {% endif %}
 
     </div>
+    <div class="col-md-4">
+        <div class="position-sticky" style="top: 2rem;">
+            <div class="card" style="width: 18rem;">
+
+                {% if post.author.perfil.avatar.url is not none%}
+                <div class="user-card">
+                    <img src="{{post.author.perfil.avatar.url}}" class="card-img-top" alt="Card image cap">
+                </div>
+                {% else %}
+                <div class="card">
+                    <img src="{% static 'images/default.png' %}" class="card-img-top" alt="Card image cap">
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{post.author}}</h5>
+                    <p class="blog-post-meta " style="font-size:15px;">
+                        Usuario desde: <br>
+                        {{post.author.date_joined}}
+                    </p>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}

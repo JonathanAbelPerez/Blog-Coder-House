@@ -1,5 +1,5 @@
-from audioop import reverse
 import django
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -7,7 +7,9 @@ from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views import generic
-from .forms import CrearUsuarioForm, ActualizarUsuarioForm
+
+from .models import Perfil
+from .forms import CrearUsuarioForm, ActualizarUsuarioForm, CambiarAvatarForm
 
 """----------------------- VISTAS GENERALES ----------------------------"""
 @login_required(login_url='login')
@@ -21,6 +23,19 @@ class EditarUsuarioView(generic.UpdateView):
     def get_object(self):
         return self.request.user
 
+class CambiarAvatarView(generic.UpdateView):
+    model = Perfil
+    template_name = 'cuentas/editar_avatar.html'
+    form_class = CambiarAvatarForm
+    success_url = reverse_lazy('profile')
+
+    def form_valid(self, form):
+        user = self.request.user
+        form.instance.user = user if user else None
+        return super().form_valid(form)
+
+    def get_object(self):
+       return self.request.user.perfil
 
 
 """------------------------- LOGIN-LOGOUT-REGISTRO-----------------------"""
@@ -35,6 +50,8 @@ def registro(request):
                 form.save()
                 user = form.cleaned_data.get('username')
                 messages.success(request, "La cuenta " + user + " ha sido creada con exito")
+                for user in User.objects.all():
+                    Perfil.objects.get_or_create(user=user)
                 return redirect('login')
 
         context = {'form':form}
